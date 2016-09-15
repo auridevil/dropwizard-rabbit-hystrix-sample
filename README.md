@@ -1,6 +1,7 @@
 Dropwizard-rabbit-hystrix-sample
 ==========
 *A simple movie rental system developed to try the mix of Dropwizard, RabbitMQ and Hystrix (+MySQL)*
+
 *[DropWizard](http://www.dropwizard.io/1.0.0/docs/) for rest service
 *[RabbitMQ](https://www.rabbitmq.com/) as a messaging system
 *[Hystrix](https://github.com/Netflix/Hystrix) for fault tollerance
@@ -69,3 +70,12 @@ java -jar target/<servicename>.jar server <configname>.jar
 or directly
 ```
 mvn clean install exec:java
+
+Info
+---
+More detail about the project soon.
+
+Contributions
+---
+Feel free to contribute: open an issue or create a pull request if you know any better approach or if you have any suggestions.
+
