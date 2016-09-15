@@ -1,0 +1,17 @@
+{
+	"priceLines":[
+		{
+			"movieId":2,
+			"price":30,
+			"bonus":2
+		},
+		{
+			"movieId":2,
+			"rentId":3,
+			"price":60,
+			"extraDays":2
+		}
+	],
+	"totalPrice":90,
+	"totalBonus":2
+}

@@ -1,0 +1,14 @@
+.DS_Store
+.metadata/
+.drop*/
+*/target/
+dropwizard/
+drop-wizard-in-a-box/
+casumobuster_final/
+.recommenders/
+.RemoteSystemsTempFiles/
+RemoteSystemsTempFiles
+*/.classpath
+*/.project
+*/.settings/
+*/node_modules/

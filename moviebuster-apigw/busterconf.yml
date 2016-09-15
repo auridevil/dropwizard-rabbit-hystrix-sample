@@ -1,0 +1,50 @@
+movieQueue: movieq
+bonusQueue: bonusq
+rentQueue: rentq
+
+jwtConf:
+  jwtTokenSecret: wKV5SSA8XtqeeJO9INtEXSVVaDITyjzcld39nwL6nQg3H9VVkcQHWCIPdXCrKgO0MIHvdB4FyIOUy0n7uIN4P6AZgRSZMngacoGW
+  jwtRealm: realm
+  jwtPrefix: Bearer
+
+hystrixConf:
+  hystrix.command.HystrixRPCClientCommand.execution.timeout.enabled: true
+  hystrix.command.HystrixRPCClientCommand.execution.isolation.thread.timeoutInMilliseconds: 10000
+  hystrix.command.HystrixRPCClientCommand.fallback.enabled: true
+  hystrix.threadpool.default.maxQueueSize: 50
+  hystrix.threadpool.default.coreSize: 5
+
+rabbitMqConf:
+  username: ${CB_RABBIT_ENV_RABBITMQ_DEFAULT_USER:-moviebuster}
+  password: ${CB_RABBIT_ENV_RABBITMQ_DEFAULT_PASS:-moviebuster}
+  virtualHost: ${CB_RABBIT_ENV_RABBITMQ_DEFAULT_VHOST:-cb-rabbit}
+  host: cb-rabbit
+  port: 5672
+  requestedChannelMax: 0
+  requestedFrameMax: 0
+  requestedHeartbeat: 4s
+  connectionTimeout: 0ms
+  handshakeTimeout: 10000ms
+  shutdownTimeout: 10000ms
+  networkRecoveryInterval: 10000ms
+   
+logging:
+  level: INFO
+  loggers:
+    com.demo.elmozzo.moviebuster.application: DEBUG
+    com.demo.elmozzo.queue: DEBUG
+    org.eclipse.jetty: INFO
+    com.netflix.hystrix: 
+      level: INFO
+
+  appenders:
+    - type: console
+    - type: file
+      threshold: INFO
+      logFormat: "%-6level [%d{HH:mm:ss.SSS}] [%t] %logger{5} - %X{code} %msg %n"
+      currentLogFilename: /tmp/application.log
+      archivedLogFilenamePattern: /tmp/application-%d{yyyy-MM-dd}-%i.log.gz
+      archivedFileCount: 7
+      timeZone: UTC
+      maxFileSize: 10MB
+  

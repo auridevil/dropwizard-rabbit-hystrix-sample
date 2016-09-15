@@ -1,0 +1,54 @@
+bonusQueue: bonusq
+
+database:
+  driverClass: com.mysql.jdbc.Driver
+  user: ${MYSQL_ENV_MYSQL_USER}
+  password: ${MYSQL_ENV_MYSQL_PASSWORD}
+  url: jdbc:mysql://cb-mysql:${MYSQL_PORT_3306_TCP_PORT:-3306}/${MYSQL_ENV_MYSQL_DATABASE:-moviebuster}
+  properties:
+    charSet: UTF-8
+    hibernate.dialect: org.hibernate.dialect.MySQLDialect
+  validationQuery: SELECT 1
+
+rabbitMqConf:
+  username: ${CB_RABBIT_ENV_RABBITMQ_DEFAULT_USER:-moviebuster}
+  password: ${CB_RABBIT_ENV_RABBITMQ_DEFAULT_PASS:-moviebuster}
+  virtualHost: ${CB_RABBIT_ENV_RABBITMQ_DEFAULT_VHOST:-cb-rabbit}
+  host: cb-rabbit
+  port: 5672
+  requestedChannelMax: 0
+  requestedFrameMax: 0
+  requestedHeartbeat: 0s
+  connectionTimeout: 0ms
+  handshakeTimeout: 10000ms
+  shutdownTimeout: 10000ms
+  networkRecoveryInterval: 5000ms
+  
+logging:
+  level: INFO
+  loggers:
+    com.demo.elmozzo.moviebuster.application: DEBUG
+    com.demo.elmozzo.queue: DEBUG
+    org.eclipse.jetty: INFO
+    com.netflix.hystrix: WARN
+    org.hibernate.SQL: INFO
+
+  appenders:
+    - type: console
+    - type: file
+      threshold: INFO
+      logFormat: "%-6level [%d{HH:mm:ss.SSS}] [%t] %logger{5} - %X{code} %msg %n"
+      currentLogFilename: /tmp/application.log
+      archivedLogFilenamePattern: /tmp/application-%d{yyyy-MM-dd}-%i.log.gz
+      archivedFileCount: 7
+      timeZone: UTC
+      maxFileSize: 10MB
+      
+server:
+  applicationConnectors:
+    - type: http
+      port: 8085
+  adminConnectors:
+    - type: http
+      port: 8086
+  

@@ -1,0 +1,69 @@
+movieQueue: movieq
+bonusQueue: bonusq
+rentQueue: rentq
+premiumPrice: 40
+basicPrice: 30
+regularDays: 3
+oldDays: 5
+premiumBonus: 2
+basicBonus: 1
+
+hystrixConf:
+    hystrix.command.HystrixRPCClientCommand.execution.timeout.enabled: true
+    hystrix.command.HystrixRPCClientCommand.execution.isolation.thread.timeoutInMilliseconds: 10000
+    hystrix.command.HystrixRPCClientCommand.fallback.enabled: true
+    hystrix.threadpool.default.maxQueueSize: 50
+    hystrix.threadpool.default.coreSize: 5
+    
+database:
+  driverClass: com.mysql.jdbc.Driver
+  user: ${MYSQL_ENV_MYSQL_USER}
+  password: ${MYSQL_ENV_MYSQL_PASSWORD}
+  url: jdbc:mysql://cb-mysql:${MYSQL_PORT_3306_TCP_PORT:-3306}/${MYSQL_ENV_MYSQL_DATABASE:-moviebuster}
+  properties:
+    charSet: UTF-8
+    hibernate.dialect: org.hibernate.dialect.MySQLDialect
+  validationQuery: SELECT 1
+
+rabbitMqConf:
+  username: ${CB_RABBIT_ENV_RABBITMQ_DEFAULT_USER:-moviebuster}
+  password: ${CB_RABBIT_ENV_RABBITMQ_DEFAULT_PASS:-moviebuster}
+  virtualHost: ${CB_RABBIT_ENV_RABBITMQ_DEFAULT_VHOST:-cb-rabbit}
+  host: cb-rabbit
+  port: 5672
+  requestedChannelMax: 0
+  requestedFrameMax: 0
+  requestedHeartbeat: 0s
+  connectionTimeout: 0ms
+  handshakeTimeout: 10000ms
+  shutdownTimeout: 10000ms
+  networkRecoveryInterval: 5000ms
+  
+logging:
+  level: INFO
+  loggers:
+    com.demo.elmozzo.moviebuster.application: DEBUG
+    com.demo.elmozzo.queue: DEBUG
+    org.eclipse.jetty: INFO
+    com.netflix.hystrix: WARN
+    org.hibernate.SQL: INFO
+
+  appenders:
+    - type: console
+    - type: file
+      threshold: INFO
+      logFormat: "%-6level [%d{HH:mm:ss.SSS}] [%t] %logger{5} - %X{code} %msg %n"
+      currentLogFilename: /tmp/application.log
+      archivedLogFilenamePattern: /tmp/application-%d{yyyy-MM-dd}-%i.log.gz
+      archivedFileCount: 7
+      timeZone: UTC
+      maxFileSize: 10MB
+      
+server:
+  applicationConnectors:
+    - type: http
+      port: 8091
+  adminConnectors:
+    - type: http
+      port: 8092
+  

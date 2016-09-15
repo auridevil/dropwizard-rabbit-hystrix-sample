@@ -1,0 +1,11 @@
+{
+	"id":4,
+	"movieId":2,
+	"customerId":2,
+	"movieType":"REGULAR",
+	"movementDate":"2016-09-06",
+	"rentDays":2,
+	"extraDays":2,
+	"movementType":"RETURN",
+	"rentId":2
+}

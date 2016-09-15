@@ -1,0 +1,25 @@
+{
+  "name": "moviebuster-test",
+  "version": "1.0.0",
+  "description": "int test for moviebuster",
+  "main": "index.js",
+  "scripts": {
+    "test": "node node_modules/jasmine-node/lib/jasmine-node/cli.js --verbose --captureExceptions ."
+  },
+  "keywords": [
+    "test"
+  ],
+  "author": "elmozzo",
+  "license": "MIT",
+  "dependencies": {
+    "asynquence": "^0.9.0",
+    "asynquence-contrib": "^0.26.0",
+    "jasmine": "^2.4.1",
+    "jasmine-node": "^1.14.5",
+    "moment": "^2.14.1",
+    "request": "^2.72.0"
+  },
+  "engines": {
+    "node": "4.4"
+  }
+}

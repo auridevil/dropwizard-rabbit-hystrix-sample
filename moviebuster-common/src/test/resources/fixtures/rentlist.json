@@ -1,0 +1,21 @@
+[
+	{
+		"id":4,
+		"movieId":2,
+		"customerId":2,
+		"movieType":"REGULAR",
+		"rentDays":2,
+		"extraDays":2,
+		"movementType":"RETURN",
+		"rentId":2
+	},
+	{
+		"id":5,
+		"movieId":4,
+		"customerId":4,
+		"movieType":"REGULAR",
+		"rentDays":4,
+		"extraDays":4,
+		"movementType":"RENT",
+	}
+]

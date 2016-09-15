@@ -1,0 +1,53 @@
+bonusQueue: bonusq
+
+database:
+  driverClass: com.mysql.jdbc.Driver
+  user: moviebuster
+  password: moviebuster
+  url: jdbc:mysql://localhost:3306/moviebuster
+  properties:
+    charSet: UTF-8
+    hibernate.dialect: org.hibernate.dialect.MySQLDialect
+  validationQuery: SELECT 1
+
+rabbitMqConf:
+  username: moviebuster
+  password: moviebuster
+  virtualHost: cb-rabbit
+  host: localhost
+  port: 5672
+  requestedChannelMax: 0
+  requestedFrameMax: 0
+  requestedHeartbeat: 0s
+  connectionTimeout: 0ms
+  handshakeTimeout: 10000ms
+  shutdownTimeout: 10000ms
+  networkRecoveryInterval: 5000ms
+  
+logging:
+  level: INFO
+  loggers:
+    com.demo.elmozzo.moviebuster.application: DEBUG
+    
+    org.hibernate.SQL:
+      level: DEBUG
+
+  appenders:
+    - type: console
+    - type: file
+      threshold: INFO
+      logFormat: "%-6level [%d{HH:mm:ss.SSS}] [%t] %logger{5} - %X{code} %msg %n"
+      currentLogFilename: /tmp/application.log
+      archivedLogFilenamePattern: /tmp/application-%d{yyyy-MM-dd}-%i.log.gz
+      archivedFileCount: 7
+      timeZone: UTC
+      maxFileSize: 10MB
+      
+server:
+  applicationConnectors:
+    - type: http
+      port: 18085
+  adminConnectors:
+    - type: http
+      port: 18086
+  
