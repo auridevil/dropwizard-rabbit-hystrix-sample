@@ -65,7 +65,7 @@ Manual Service Start
 You can start each service without docker:
 ```
 mvn clean install package
-java -jar target/<servicename>.jar server <configname>.jar
+java -jar target/<servicename>.jar server <configname>
 ```
 or directly
 ```
