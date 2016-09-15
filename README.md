@@ -1,6 +1,6 @@
 Dropwizard-rabbit-hystrix-sample
 ==========
-*A simple movie rental system developed to try the mix of Dropwizard, RabbitMQ and Hystrix (+MySQL)*
+*A simple movie rental system developed to try the mix of Dropwizard, RabbitMQ and Hystrix (+MySQL + Docker)*
 
 *[DropWizard](http://www.dropwizard.io/1.0.0/docs/) for rest service
 *[RabbitMQ](https://www.rabbitmq.com/) as a messaging system
