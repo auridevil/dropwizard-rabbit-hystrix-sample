@@ -70,6 +70,7 @@ java -jar target/<servicename>.jar server <configname>
 or directly
 ```
 mvn clean install exec:java
+```
 
 Info
 ---
